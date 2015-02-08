@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6233" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6233"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,8 +11,10 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Icon_for_File" customModuleProvider="target">
             <connections>
+                <outlet property="imageWell" destination="tyg-Su-5gM" id="PcT-u0-wzg"/>
+                <outlet property="textField" destination="ViO-4D-YEr" id="7I5-xK-4oI"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -157,8 +159,8 @@
                                     <action selector="paste:" target="-1" id="UvS-8e-Qdg"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Paste and Match Style" keyEquivalent="V" id="WeT-3V-zwk">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                            <menuItem title="Paste and Match Style" keyEquivalent="v" id="WeT-3V-zwk">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="pasteAsPlainText:" target="-1" id="cEh-KX-wJQ"/>
                                 </connections>
@@ -669,12 +671,54 @@
         <window title="Icon for File" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="contentRect" x="335" y="390" width="329" height="360"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="329" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ViO-4D-YEr">
+                        <rect key="frame" x="20" y="20" width="202" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" placeholderString="file extension" drawsBackground="YES" id="uB1-TK-Ud2">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="updateImageForFileExtension:" target="Voe-Tx-rLC" id="JJx-Ym-5Qv"/>
+                        </connections>
+                    </textField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tyg-Su-5gM" customClass="DraggableImageView" customModule="Icon_for_File" customModuleProvider="target">
+                        <rect key="frame" x="17" y="59" width="295" height="284"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="3zV-WE-7jW"/>
+                    </imageView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rRN-LW-aB6">
+                        <rect key="frame" x="224" y="14" width="91" height="32"/>
+                        <buttonCell key="cell" type="push" title="get Icon" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8gZ-ih-MTq">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="updateImageForFileExtension:" target="Voe-Tx-rLC" id="ahS-Ys-12m"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ViO-4D-YEr" firstAttribute="top" secondItem="tyg-Su-5gM" secondAttribute="bottom" constant="20" id="5JR-8m-U37"/>
+                    <constraint firstItem="rRN-LW-aB6" firstAttribute="centerY" secondItem="ViO-4D-YEr" secondAttribute="centerY" id="LvG-ne-zHZ"/>
+                    <constraint firstItem="ViO-4D-YEr" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="N3w-RT-Rip"/>
+                    <constraint firstItem="rRN-LW-aB6" firstAttribute="leading" secondItem="ViO-4D-YEr" secondAttribute="trailing" constant="8" symbolic="YES" id="aRh-44-tMm"/>
+                    <constraint firstItem="tyg-Su-5gM" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="aaR-Be-Rog"/>
+                    <constraint firstItem="tyg-Su-5gM" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="eUU-1m-y1R"/>
+                    <constraint firstAttribute="trailing" secondItem="tyg-Su-5gM" secondAttribute="trailing" constant="20" id="gVd-14-Fgo"/>
+                    <constraint firstAttribute="bottom" secondItem="ViO-4D-YEr" secondAttribute="bottom" constant="20" id="jIM-xu-UbI"/>
+                    <constraint firstAttribute="trailing" secondItem="rRN-LW-aB6" secondAttribute="trailing" constant="20" id="z2I-gp-D0P"/>
+                </constraints>
             </view>
+            <point key="canvasLocation" x="217.5" y="415"/>
         </window>
     </objects>
 </document>
